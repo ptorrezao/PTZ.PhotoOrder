@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTZ.PhotoOrder", "PTZ.PhotoOrder\PTZ.PhotoOrder.csproj", "{0B45A34B-1B7B-421D-94D9-709ECF72191A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B45A34B-1B7B-421D-94D9-709ECF72191A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B45A34B-1B7B-421D-94D9-709ECF72191A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B45A34B-1B7B-421D-94D9-709ECF72191A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B45A34B-1B7B-421D-94D9-709ECF72191A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EBA5AF4-F949-4A94-96B2-ADB6F698A3D8}
+	EndGlobalSection
+EndGlobal
