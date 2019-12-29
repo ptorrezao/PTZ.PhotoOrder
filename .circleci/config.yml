@@ -18,5 +18,5 @@ jobs:
           name: Build and push Docker image
           command: |
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker build -t ptorrezao/photoorder:${CIRCLE_BRANCH} PTZ.PhotoOrder/.
+            docker build -t ptorrezao/photoorder:${CIRCLE_BRANCH} -f PTZ.PhotoOrder/Dockerfile .
             docker push ptorrezao/photoorder:${CIRCLE_BRANCH}
