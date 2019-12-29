@@ -19,6 +19,19 @@ namespace PTZ.PhotoOrder.Services
         {
             this.photoOrderConfig = photoOrderConfig;
             this.restClient = new RestClient("https://api.trello.com/1/");
+
+         
+            CreateFolders(Path.Combine(Directory.GetCurrentDirectory()));
+            CreateFolders(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"));
+            CreateFolders(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "photos"));
+        }
+
+        private static void CreateFolders(string folder)
+        {
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
         }
 
         internal AlbumViewModel GetAlbum(int page, int pageSize)
