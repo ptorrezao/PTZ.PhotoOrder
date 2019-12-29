@@ -64,7 +64,7 @@ namespace PTZ.PhotoOrder.Services
                 items.Add(new PhotoViewModel()
                 {
                     Filename = file.Name,
-                    RelativePath = $"/Photos/{file.Name}"
+                    RelativePath = $"/photos/{file.Name}"
                 });
             }
 

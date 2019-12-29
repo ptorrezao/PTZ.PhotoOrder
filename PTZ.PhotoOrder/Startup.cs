@@ -61,7 +61,7 @@ namespace PTZ.PhotoOrder
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(albumSvc.AlbumFolderPath),
-                RequestPath = "/Photos"
+                RequestPath = "/photos"
             });
 
             app.UseCookiePolicy();
