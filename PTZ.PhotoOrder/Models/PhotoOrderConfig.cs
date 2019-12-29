@@ -9,7 +9,6 @@ namespace PTZ.PhotoOrder.Models
     {
         public string Title { get; set; }
         public decimal FotoPrice { get; set; }
-        public string TrelloAPIKey { get; set; }
-        public string TrelloToken { get; set; }
+        public TrelloConfig Trello{ get; set; }
     }
 }

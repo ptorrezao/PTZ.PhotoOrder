@@ -366,8 +366,13 @@
         });
 
         function ReloadBasked() {
+            var items = [];
+            if (JSON.parse(localStorage.getItem('ShoppingCart')) != null) {
+                items = JSON.parse(localStorage.getItem('ShoppingCart'));
+            }
+
             var model = {
-                items: JSON.parse(localStorage.getItem('ShoppingCart')),
+                items: items,
                 orderRequest: function () {
                     return "("+this.qtd +") "+ this.photo;
                 },

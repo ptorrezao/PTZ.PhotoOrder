@@ -60,7 +60,7 @@ namespace PTZ.PhotoOrder.Services
             if (string.IsNullOrEmpty(form.Nome) ||
                 string.IsNullOrEmpty(form.Email) ||
                 string.IsNullOrEmpty(form.NumeroTelefone) ||
-                form.Fotos.Length <= 0)
+                form.Fotos?.Length <= 0)
             {
                 return false;
             }
@@ -90,8 +90,8 @@ namespace PTZ.PhotoOrder.Services
             var request = new RestRequest("checklists/{checkListId}/checkItems", Method.POST);
             request.AddParameter("checkListId", checkListId, ParameterType.UrlSegment);
             request.AddParameter("name", item, ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<dynamic>(response.Content);
 
@@ -104,8 +104,8 @@ namespace PTZ.PhotoOrder.Services
             var request = new RestRequest("checklists/", Method.POST);
             request.AddParameter("idCard", cardId, ParameterType.QueryString);
             request.AddParameter("name", "Fotos Encomendadas", ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<dynamic>(response.Content);
 
@@ -126,8 +126,8 @@ namespace PTZ.PhotoOrder.Services
             request.AddParameter("name", title, ParameterType.QueryString);
             request.AddParameter("desc", description, ParameterType.QueryString);
             request.AddParameter("idList", listId, ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<dynamic>(response.Content);
 
@@ -137,11 +137,12 @@ namespace PTZ.PhotoOrder.Services
 
         private string GetOrCreateBoard(string title)
         {
-            var request = new RestRequest("members/ptorrezao/boards", Method.GET);
+            var request = new RestRequest("members/{userId}/boards", Method.GET);
+            request.AddParameter("userId", this.photoOrderConfig.Trello.Username, ParameterType.UrlSegment);
             request.AddParameter("filter", "open", ParameterType.QueryString);
             request.AddParameter("fields", "name", ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<List<dynamic>>(response.Content);
 
@@ -158,8 +159,8 @@ namespace PTZ.PhotoOrder.Services
             var request = new RestRequest("boards/", Method.POST);
             request.AddParameter("name", title, ParameterType.QueryString);
             request.AddParameter("defaultLists", "false", ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<dynamic>(response.Content);
             var boardId = result.id.ToString();
@@ -177,8 +178,8 @@ namespace PTZ.PhotoOrder.Services
             var request = new RestRequest("lists/", Method.POST);
             request.AddParameter("name", name, ParameterType.QueryString);
             request.AddParameter("idBoard", idBoard, ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<dynamic>(response.Content);
 
@@ -190,8 +191,8 @@ namespace PTZ.PhotoOrder.Services
             var request = new RestRequest("/boards/{id}/lists", Method.GET);
             request.AddParameter("id", boardId, ParameterType.UrlSegment);
             request.AddParameter("fields", "name", ParameterType.QueryString);
-            request.AddParameter("key", this.photoOrderConfig.TrelloAPIKey, ParameterType.QueryString);
-            request.AddParameter("token", this.photoOrderConfig.TrelloToken, ParameterType.QueryString);
+            request.AddParameter("key", this.photoOrderConfig.Trello.APIKey, ParameterType.QueryString);
+            request.AddParameter("token", this.photoOrderConfig.Trello.Token, ParameterType.QueryString);
             var response = restClient.Execute(request);
             var result = JsonConvert.DeserializeObject<List<dynamic>>(response.Content);
 
