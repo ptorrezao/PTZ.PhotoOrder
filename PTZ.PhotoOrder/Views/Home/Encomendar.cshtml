@@ -270,132 +270,139 @@
     .added {
         margin: 0 -50px 0 0 !important;
     }
+
+    @@media screen and (max-width: 600px) {
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
 </style>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="container">
-                <script id="template" type="x-tmpl-mustache">
-                    <form action="/Home/Encomendar" method="post">
-                        <div class="form-group">
-                            <label for="Nome">Nome</label>
-                            <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="emailHelp" placeholder="Nome" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="Email">Email</label>
-                                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
-                                </div>
-                                <div class="col">
-                                    <label for="NumeroTelefone">Número Telefone</label>
-                                    <input type="tel" class="form-control" id="NumeroTelefone" name="NumeroTelefone" placeholder="Número Telefone" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <label>Endereço:</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="autocomplete"
-                                           name="morada"
-                                           placeholder="Rua">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-10">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="autocomplete"
-                                           name="cidade"
-                                           placeholder="Cidade">
-                                </div>
-                                <div class="col-2">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="autocomplete"
-                                           name="codPostal"
-                                           placeholder="Codigo Postal">
-                                </div>
-                            </div>
-                        </div>
-                        <fieldset class="form-group">
-                            <div class="row">
-                                <legend class="col-form-label col-sm-3 pt-0">Forma de Pagamento</legend>
-                                <div class="col-sm-9">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="paymentRadio" id="mbway" value="mbway" checked>
-                                        <label class="form-check-label" for="mbway">
-                                            MBWay (Nós enviare-mos o pedido)
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="paymentRadio" id="money" value="money">
-                                        <label class="form-check-label" for="money">
-                                            $$$ (Falar com a Ana)
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="paymentRadio" id="transf" value="transf" disabled>
-                                        <label class="form-check-label" for="transf">
-                                            Transferência Bancaria (Enviamos o IBAN via email)
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <input type="hidden" name="total" value="{{TotalValue}}" />
-                        {{#items}}
-                        <input type="hidden" name="fotos" value="{{orderRequest}}" />
-                        {{/items}}
-                        <button type="submit" class="btn btn-primary right ">Pagar {{Total}}</button>
-                    </form>
-                    <div class="clearfix"></div>
-                    <section id="cart">
-                        {{#items}}
-                        <article class="product">
-                            <header>
-                                <a class="remove">
-                                    <img src="{{path}}" alt="">
-                                </a>
-                            </header>
-
-                            <div class="content">
-                                <h1>{{photo}}</h1>
-                            </div>
-
-                            <footer class="content">
-                                <span class="qt-minus removePhoto" data-photo="{{photo}}">-</span>
-                                <span class="qt">{{qtd}}</span>
-                                <span class="qt-plus addPhoto" data-photo="{{photo}}">+</span>
-
-                                <h2 class="full-price">
-                                    {{totalPrice}}
-                                </h2>
-
-                                <h2 class="price">
-                                    {{unitPrice}}
-                                </h2>
-                            </footer>
-                        </article>
-                        {{/items}}
-                    </section>
-
-                </script>
-
-                <div id="target"></div>
+<script id="template" type="x-tmpl-mustache">
+    <form action="/Home/Encomendar" method="post">
+        <div class="form-group">
+            <label for="Nome">Nome</label>
+            <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="emailHelp" placeholder="Nome" required>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="Email">Email</label>
+                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
+                </div>
+                <div class="col">
+                    <label for="NumeroTelefone">Número Telefone</label>
+                    <input type="tel" class="form-control" id="NumeroTelefone" name="NumeroTelefone" placeholder="Número Telefone" required>
+                </div>
             </div>
         </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label>Endereço:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text"
+                           class="form-control"
+                           id="autocomplete"
+                           name="morada"
+                           placeholder="Rua">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-10">
+                    <input type="text"
+                           class="form-control"
+                           id="autocomplete"
+                           name="cidade"
+                           placeholder="Cidade">
+                </div>
+                <div class="col-2">
+                    <input type="text"
+                           class="form-control"
+                           id="autocomplete"
+                           name="codPostal"
+                           placeholder="Codigo Postal">
+                </div>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-3 pt-0">Forma de Pagamento</legend>
+                <div class="col-sm-9">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentRadio" id="mbway" value="mbway" checked>
+                        <label class="form-check-label" for="mbway">
+                            MBWay (Nós enviare-mos o pedido)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentRadio" id="money" value="money">
+                        <label class="form-check-label" for="money">
+                            $$$ (Falar com a Ana)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentRadio" id="transf" value="transf" disabled>
+                        <label class="form-check-label" for="transf">
+                            Transferência Bancaria (Enviamos o IBAN via email)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <input type="hidden" name="total" value="{{TotalValue}}" />
+        {{#items}}
+        <input type="hidden" name="fotos" value="{{orderRequest}}" />
+        {{/items}}
+        <button type="submit" class="btn btn-primary right ">Pagar {{Total}}</button>
+    </form>
+    <div class="clearfix"></div>
+    <section id="cart">
+        {{#items}}
+        <article class="product">
+            <header>
+                <a class="remove">
+                    <img src="{{path}}" alt="">
+                </a>
+            </header>
+
+            <div class="content">
+                <h1>{{photo}}</h1>
+            </div>
+
+            <footer class="content">
+                <span class="qt-minus removePhoto" data-photo="{{photo}}">-</span>
+                <span class="qt">{{qtd}}</span>
+                <span class="qt-plus addPhoto" data-photo="{{photo}}">+</span>
+
+                <h2 class="full-price">
+                    {{totalPrice}}
+                </h2>
+
+                <h2 class="price">
+                    {{unitPrice}}
+                </h2>
+            </footer>
+        </article>
+        {{/items}}
+    </section>
+
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div id="target"></div>
     </div>
 </div>
+
 @section Scripts
     {
     <script>
