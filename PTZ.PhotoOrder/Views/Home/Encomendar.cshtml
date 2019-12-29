@@ -385,7 +385,7 @@
                 Total: function () {
                     var total = 0
                     for (var i = 0, _len = this.items.length; i < _len; i++) {
-                        total += this.items[i].qtd
+                        total += this.items[i].qtd * unitPrice;
                     }
 
                     return numeral(total).format('0.00') + " €";
