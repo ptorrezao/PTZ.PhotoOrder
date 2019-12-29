@@ -57,9 +57,10 @@ namespace PTZ.PhotoOrder
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            var albumSvc = new PhotoAlbumService(Configuration.GetSection("Configuration").Get<PhotoOrderConfig>());
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "photos")),
+                FileProvider = new PhysicalFileProvider(albumSvc.AlbumFolderPath),
                 RequestPath = "/Photos"
             });
 

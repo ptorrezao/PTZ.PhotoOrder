@@ -14,6 +14,7 @@ namespace PTZ.PhotoOrder.Services
     {
         private readonly PhotoOrderConfig photoOrderConfig;
         private readonly RestClient restClient;
+        public string AlbumFolderPath { get; }
 
         public PhotoAlbumService(PhotoOrderConfig photoOrderConfig)
         {
@@ -24,6 +25,8 @@ namespace PTZ.PhotoOrder.Services
             CreateFolders(Path.Combine(Directory.GetCurrentDirectory()));
             CreateFolders(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"));
             CreateFolders(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "photos"));
+
+            this.AlbumFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "photos");
         }
 
         private static void CreateFolders(string folder)
