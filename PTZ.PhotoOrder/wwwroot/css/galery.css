@@ -51,3 +51,7 @@ body {
         max-width: 100%;
     }
 }
+
+.btn i.fa {
+    color: white;
+}
