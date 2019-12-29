@@ -12,6 +12,9 @@ namespace PTZ.PhotoOrder.Models
         public string NumeroTelefone { get; set; }
         public string PaymentRadio { get; set; }
         public decimal Total { get; set; }
+        public string Morada { get; set; }
+        public string Cidade { get; set; }
+        public string CodPostal { get; set; }
         public string[] Fotos { get; set; }
     }
 }

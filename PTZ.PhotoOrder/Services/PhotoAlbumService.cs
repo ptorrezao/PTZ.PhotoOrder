@@ -21,7 +21,7 @@ namespace PTZ.PhotoOrder.Services
             this.photoOrderConfig = photoOrderConfig;
             this.restClient = new RestClient("https://api.trello.com/1/");
 
-         
+
             CreateFolders(Path.Combine(Directory.GetCurrentDirectory()));
             CreateFolders(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"));
             CreateFolders(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "photos"));
@@ -136,7 +136,10 @@ namespace PTZ.PhotoOrder.Services
                 $"**Email**: {form.Email} {Environment.NewLine}" +
                 $"**Contacto**: {form.NumeroTelefone} {Environment.NewLine}" +
                 $"**Forma Pagamento**: {form.PaymentRadio} {Environment.NewLine}" +
-                $"**Total**: {form.Total}";
+                $"**Total**: {form.Total} {Environment.NewLine}" +
+                $"{Environment.NewLine}" +
+                $"**Entrega em**: {form.Morada} {Environment.NewLine}" +
+                $"{form.CodPostal} {form.Cidade}";
 
             var request = new RestRequest("cards/", Method.POST);
             request.AddParameter("name", title, ParameterType.QueryString);
