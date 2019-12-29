@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using PTZ.PhotoOrder.Models;
+using PTZ.PhotoOrder.Services;
 
 namespace PTZ.PhotoOrder
 {
@@ -31,6 +35,7 @@ namespace PTZ.PhotoOrder
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<PhotoOrderConfig>(Configuration.GetSection("Configuration"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -51,6 +56,13 @@ namespace PTZ.PhotoOrder
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "photos")),
+                RequestPath = "/Photos"
+            });
+
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>

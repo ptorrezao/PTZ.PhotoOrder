@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PhotoViewModel>
+
+@foreach (var item in Model)
+{
+<a href="@item.RelativePath"
+   data-photo="@item.Filename"
+   data-toggle="lightbox"
+   data-gallery="gallery-name"
+   data-title="@ViewData["Title"] <small>@item.Filename</small>"
+   data-footer="<i class='fa fa-shopping-basket' aria-hidden='true'></i>
+                    <i class='fa fa-plus addPhoto' aria-hidden='true' data-photo='@item.Filename' data-filepath='@item.RelativePath'></i>
+                    <span class='counterPhoto' data-photo='@item.Filename'>0</span>
+                    <i class='fa fa-minus removePhoto' aria-hidden='true' data-photo='@item.Filename'></i>">
+        <img src="@item.RelativePath" loading="lazy">
+    </a>
+}

@@ -1,8 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model PTZ.PhotoOrder.Models.AlbumViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    var collumnItemSize = (Model.Photos.Length + 1) / 4;
+    ViewData["Title"] = Model.AlbumName;
+}
+@section Style
+    {
+    <link rel="stylesheet" href="~/css/galery.css" />
+}
+<div class="row">
+    <div class="column">
+        @await Html.PartialAsync("_PhotoItem", Model.Photos.Take(collumnItemSize))
+    </div>
+    <div class="column">
+        @await Html.PartialAsync("_PhotoItem", Model.Photos.Skip(collumnItemSize * 1).Take(collumnItemSize))
+    </div>
+    <div class="column">
+        @await Html.PartialAsync("_PhotoItem", Model.Photos.Skip(collumnItemSize * 2).Take(collumnItemSize))
+    </div>
+    <div class="column">
+        @await Html.PartialAsync("_PhotoItem", Model.Photos.Skip(collumnItemSize * 3).Take(collumnItemSize))
+    </div>
 </div>
+
+@section Scripts
+    {
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                alwaysShowClose: true,
+                onShown: function () {
+                    updateQtd(this._$element.first().data("photo"));
+
+                    $(".addPhoto").on('click', function (event) {
+                        addToBasket($(event.target).data("photo"), $(event.target).data("filepath"));
+                    });
+
+                    $(".removePhoto").on('click', function (event) {
+                        removeFromBasket($(event.target).data("photo"));
+                    });
+                },
+                onNavigate: function (direction, itemIndex) {
+                }
+            });
+        });
+
+    
+    </script>
+}
