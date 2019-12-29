@@ -1,0 +1,22 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: jetcipher/circleci-dotnet-core:2.2
+    steps:
+      - checkout
+      - run:
+          name: Restore
+          command: dotnet restore
+          working_directory: PTZ.PhotoOrder
+      - run:
+          name: Build
+          command: dotnet build -c Release
+          working_directory: PTZ.PhotoOrder
+      - setup_remote_docker
+      - run:
+          name: Build and push Docker image
+          command: |
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker build -t ptorrezao/photoorder:${CIRCLE_BRANCH} .
+            docker push ptorrezao/photoorder:${CIRCLE_BRANCH}
