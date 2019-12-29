@@ -17,8 +17,18 @@ namespace PTZ.PhotoOrder
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                .UseConfiguration(configuration)
                 .UseStartup<Startup>();
+        }
     }
 }
