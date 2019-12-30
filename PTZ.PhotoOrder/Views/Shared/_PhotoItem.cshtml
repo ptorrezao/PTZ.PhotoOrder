@@ -8,9 +8,9 @@
    data-gallery="gallery-name"
    data-title="@ViewData["Title"] <small>@item.Filename</small>"
    data-footer="<i class='fa fa-shopping-basket' aria-hidden='true'></i>
-                    <a class='btn btn-primary addPhoto' data-photo='@item.Filename' data-filepath='@item.RelativePath' role='button'><i class='fa fa-plus ' aria-hidden='true'></i></a>
+                    <a class='btn btn-primary addPhoto' data-photo='@item.Filename' data-filepath='@item.RelativePath' role='button'><i class='fa fa-plus ' data-photo='@item.Filename' data-filepath='@item.RelativePath' aria-hidden='true'></i></a>
                     <span class='counterPhoto' data-photo='@item.Filename'>0</span>
-                    <a class='btn btn-primary removePhoto' data-photo='@item.Filename' data-filepath='@item.RelativePath' role='button'><i class='fa fa-minus' aria-hidden='true'></i></a>">
+                    <a class='btn btn-primary removePhoto' data-photo='@item.Filename' data-filepath='@item.RelativePath' role='button'><i class='fa fa-minus' data-photo='@item.Filename' data-filepath='@item.RelativePath' aria-hidden='true'></i></a>">
         <img src="@item.RelativePath" loading="lazy">
     </a>
 }

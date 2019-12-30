@@ -309,7 +309,7 @@
                 <div class="col">
                     <input type="text"
                            class="form-control"
-                           id="autocomplete"
+                           id="morada"
                            name="morada"
                            placeholder="Rua">
                 </div>
@@ -320,14 +320,14 @@
                 <div class="col-10">
                     <input type="text"
                            class="form-control"
-                           id="autocomplete"
+                           id="cidade"
                            name="cidade"
                            placeholder="Cidade">
                 </div>
                 <div class="col-2">
                     <input type="text"
                            class="form-control"
-                           id="autocomplete"
+                           id="codPostal"
                            name="codPostal"
                            placeholder="Codigo Postal">
                 </div>
@@ -358,6 +358,9 @@
                 </div>
             </div>
         </fieldset>
+        <small>
+           * As fotos seram impressas em 15x20 (cm)
+        </small>
         <input type="hidden" name="total" value="{{TotalValue}}" />
         {{#items}}
         <input type="hidden" name="fotos" value="{{orderRequest}}" />
